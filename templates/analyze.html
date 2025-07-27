@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>센서 데이터 상태 분석</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #b388eb, #8e44ad);
+      font-family: '맑은 고딕', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .upload-box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 400px;
+    }
+
+    h2 {
+      color: #8e44ad;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #8e44ad;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #a870e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-box">
+    <h2>CSV 파일 업로드로 상태 분석</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv" required><br>
+      <button type="submit">분석 시작</button>
+    </form>
+  </div>
+</body>
+</html>

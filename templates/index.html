@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>센서 데이터 웹 플랫폼</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #b388eb, #8e44ad);
+      font-family: '맑은 고딕', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 60px;
+      font-size: 48px;
+    }
+
+    .button-container {
+      margin-top: 60px;
+    }
+
+    .btn {
+      background-color: white;
+      color: #8e44ad;
+      border: none;
+      padding: 15px 30px;
+      margin: 15px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #f1e6ff;
+    }
+
+    .guide {
+      margin-top: 50px;
+      font-size: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>센서 데이터 웹 플랫폼</h1>
+
+  <div class="button-container">
+    <a href="/generate"><button class="btn">① 랜덤 센서 데이터 생성</button></a>
+    <a href="/analyze"><button class="btn">② 업로드로 상태 분석</button></a>
+    <a href="/visualize"><button class="btn">③ 분석된 데이터 시각화</button></a>
+  </div>
+
+  <div class="guide">
+    <p><strong>사용 방법 안내</strong></p>
+    <p>
+      1. [랜덤 센서 데이터 생성] 버튼을 눌러 가상의 센서 데이터를 다운로드합니다.<br>
+      2. [업로드로 상태 분석] 버튼을 눌러 받은 csv 파일을 업로드하면 이상 여부가 분석된 파일이 내려받아집니다.<br>
+      3. [분석된 데이터 시각화] 버튼을 눌러 분석된 csv 파일을 업로드하면 차트로 시각화된 결과를 볼 수 있습니다.
+    </p>
+  </div>
+
+</body>
+</html>

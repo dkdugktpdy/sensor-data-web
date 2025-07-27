@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>센서 데이터 시각화</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #b388eb, #8e44ad);
+      font-family: '맑은 고딕', sans-serif;
+      color: #333;
+      text-align: center;
+    }
+
+    .upload-box {
+      background-color: white;
+      padding: 40px;
+      margin: 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h2 {
+      color: #8e44ad;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #8e44ad;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #a870e5;
+    }
+
+    canvas {
+      margin: 30px auto;
+      max-width: 700px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  {% if not data %}
+    <div class="upload-box">
+      <h2>분석된 CSV 파일 업로드</h2>
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required><br>
+        <button type="submit">시각화 시작</button>
+      </form>
+    </div>
+  {% else %}
+    <h2 style="margin-top: 40px; color: white;">센서 데이터 시각화 결과</h2>
+
+    <canvas id="vibrationChart"></canvas>
+    <canvas id="temperatureChart"></canvas>
+    <canvas id="speedChart"></canvas>
+
+    <script>
+      const sensorData = JSON.parse(`{{ data | safe }}`);
+      const labels = sensorData.labels;
+
+      function makeChart(id, label, data) {
+        new Chart(document.getElementById(id), {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              fill: true,
+              borderWidth: 2,
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                ticks: {
+                  autoSkip: true,
+                  maxTicksLimit: 20
+                }
+              }
+            }
+          }
+        });
+      }
+
+      makeChart("vibrationChart", "진동", sensorData.vibration);
+      makeChart("temperatureChart", "온도", sensorData.temperature);
+      makeChart("speedChart", "회전 속도", sensorData.rotation_speed);
+    </script>
+  {% endif %}
+
+</body>
+</html>
